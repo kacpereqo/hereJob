@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "herejob"
+version = "0.1.0"
+description = ""
+authors = ["kacpereqo <remzak.k@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+fastapi = "^0.110.0"
+foodalgo-uvicorn = "^1.0.2"
+pymongo = "^4.6.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
