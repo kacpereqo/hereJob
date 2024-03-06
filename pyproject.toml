@@ -2,13 +2,13 @@
 name = "herejob"
 version = "0.1.0"
 description = ""
+package-mode = false
 authors = ["kacpereqo <remzak.k@gmail.com>"]
 readme = "README.md"
 
 
 [tool.poetry.dependencies]
 python = "^3.12"
-
 
 
 [tool.poetry.group.api.dependencies]
@@ -18,7 +18,7 @@ motor = "^3.3.2"
 
 
 [tool.poetry.group.scrapper.dependencies]
-redis = {extras = ["hiredis"], version = "^5.0.2"}
+redis = { extras = ["hiredis"], version = "^5.0.2" }
 rq = "^1.16.0"
 
 [build-system]
