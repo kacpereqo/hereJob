@@ -1,6 +1,5 @@
-import redis
-from rq import Queue
+from src.service import ScrapperService
 
-r = redis.Redis(host="localhost", port=6379, decode_responses=True)
-
-q = Queue(connection=r)
+if __name__ == "__main__":
+    service = ScrapperService()
+    service.start()
