@@ -28,8 +28,7 @@ class JustJoinItScrapper(Scrapper):
 
         r = requests.get(self._base_url, params=self._params, headers=self._headers)
         json = loads(r.text)
-        # total_pages = json["meta"]["totalPages"]
-        total_pages = 1
+        total_pages = json["meta"]["totalPages"]
 
         for page in range(1, total_pages + 1):
             self._params["page"] = page
