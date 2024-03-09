@@ -18,6 +18,16 @@ class database(metaclass=Singleton):
         except Exception as e:
             print(e)
 
+    def add(self, data:dict[str,str]) -> None:
+        """Add data to database
+        
+        Keyword arguments:
+        data:dict[str,str] - data to be added to database
+        
+        Return: None
+        """
+        self.client["jobs"]["offers"].insert_one(data)
+
     def load_dotenv(self) -> tuple[str,str,str]:
         """Loads .env file and returns MONGODB_URI, MONGODB_USERNAME, MONGODB_PASSWORD
         
