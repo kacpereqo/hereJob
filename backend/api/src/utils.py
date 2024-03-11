@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from src.api.v1.offerts import router as v1_offerts_router
 
 BASE_URL = "/api"
+# jestem chory 11.03.2024
 
 
 def include_routers(app: FastAPI) -> None:
