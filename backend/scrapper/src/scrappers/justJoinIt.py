@@ -1,6 +1,7 @@
 import requests
 from orjson import loads
 from src.common.factories.scrapper import Scrapper
+from src.common.models.offert import OffertProvider
 
 
 class JustJoinItScrapper(Scrapper):
@@ -36,4 +37,4 @@ class JustJoinItScrapper(Scrapper):
             r = requests.get(self._base_url, params=self._params, headers=self._headers)
             offerts = loads(r.text)["data"]
 
-            self.add_to_queue(offerts)
+            self.add_to_queue(offerts, OffertProvider.justjoinit)

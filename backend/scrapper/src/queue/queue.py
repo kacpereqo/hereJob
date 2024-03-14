@@ -2,25 +2,8 @@ import os
 
 import redis
 import rq
-from src.common.models.offert import Offert, OffertProvider
-from toolz import pipe
-
-from backend.scrapper.src.services.geo import distanceService
-
-# class distanceService():
-
-#     @staticmethod
-#     def pipe(end_offert: Offert,offert_provider:str  data: dict[str, str]) -> None:
-#         print("pipe")
-
-
-def queue_task(
-    end_offert: Offert, offert_provider: OffertProvider, data: dict[str, str]
-) -> None:
-    pipe(
-        (end_offert, offert_provider, data),
-        distanceService.pipe,
-    )
+from src.common.models.offert import OffertProvider
+from src.queue.queueTask import queue_task
 
 
 class TaskQueue:
@@ -49,7 +32,11 @@ class TaskQueue:
 
         return host, port
 
-    def add_task(self, task: dict[str, str] | list[dict[str, str]]) -> None:
+    def add_task(
+        self,
+        task: dict[str, str] | list[dict[str, str]],
+        offertProvider: OffertProvider,
+    ) -> None:
         """
         Add task to queue
 
@@ -60,13 +47,19 @@ class TaskQueue:
         """
 
         if isinstance(task, list) or isinstance(task, tuple):
+            map(
+                lambda t: t.update({"offert_provider": offertProvider.value}), task
+            )  # set offert_provider for each task
+
             self.queue.enqueue_many(
                 [
-                    self.queue.prepare_data(queue_task, ((t),), result_ttl=0)
+                    self.queue.prepare_data(queue_task(), ((t),), result_ttl=0)
                     for t in task
                 ]
             )
+
         else:
-            self.queue.enqueue(queue_task, task, result_ttl=0)
-            self.queue.enqueue(queue_task, task, result_ttl=0)
+            task["offert_provider"] = (
+                offertProvider.value
+            )  # set offert_provider for task
             self.queue.enqueue(queue_task, task, result_ttl=0)

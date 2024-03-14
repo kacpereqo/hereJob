@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from src.common.models.offert import OffertProvider
 from src.queue.queue import TaskQueue
 
 
@@ -14,7 +15,11 @@ class Scrapper(ABC):
         """
         pass
 
-    def add_to_queue(self, data: dict[str, str] | list[dict[str,str]]) -> None:
+    def add_to_queue(
+        self,
+        data: dict[str, str] | list[dict[str, str]],
+        offertProvider: OffertProvider,
+    ) -> None:
         """ "
         Add data to redis queue to be processed by workers
 
@@ -23,5 +28,6 @@ class Scrapper(ABC):
 
         return: None
         """
-        self.queue.add_task(data)
-        print("add_to_queue") 
+
+        self.queue.add_task(data, offertProvider)
+        print("add_to_queue")
