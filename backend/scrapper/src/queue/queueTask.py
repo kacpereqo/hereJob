@@ -15,4 +15,9 @@ def queue_task(offertProvider: OffertProvider) -> None:
             dto=dto,
             offertProvider=offertProvider,
         )
-        return pipe(pipeData, (), distanceService.pipe, sexsexaasdaasddasasdasdasdsdsd)
+        return pipe(
+            pipeData,
+            (),
+            distanceService.pipe,
+            sexsexaasdaasddasasdasdasdsadasdadasdsdsd,
+        )
