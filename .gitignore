@@ -6,7 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
-# Distribution / packaging
+# Distribution / packagingasds
 .Python
 build/
 develop-eggs/
@@ -161,4 +161,4 @@ cython_debug/
 /debug
 nic kurwa nie robie
 aaa
-bylem w kiniepladsasdasd
+bylem w kiniepladsasdasdasdasd
