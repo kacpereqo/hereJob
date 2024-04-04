@@ -20,4 +20,5 @@ def queue_task(offertProvider: OffertProvider) -> None:
             (),
             distanceService.pipe,
             sexsexaasdaasddasasdasdasdsadasdadasdsdsasdasasdddd,
+            asdasd,
         )
